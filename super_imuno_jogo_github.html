@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Imuno - O Jogo</title>
+    <!-- Tailwind CSS para estilização rápida -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        'imuno-blue': '#2b8a9e',
+                        'imuno-green': '#4db6ac',
+                        'imuno-dark': '#0f172a',
+                        'imuno-yellow': '#fde047',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #2b8a9e;
+            background-image: linear-gradient(135deg, #2b8a9e 0%, #0f172a 100%);
+            background-attachment: fixed;
+            color: white;
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        .modal-enter {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+
+    <!-- Header -->
+    <header class="py-12 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="relative z-10 px-4">
+            <h1 class="text-6xl md:text-8xl font-black italic text-imuno-yellow tracking-tighter text-shadow transform -skew-x-6">
+                SUPER<br>IMUNO
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl font-bold uppercase tracking-widest text-teal-200">
+                Informações do Jogo
+            </p>
+        </div>
+    </header>
+
+    <!-- Introdução -->
+    <section class="max-w-4xl mx-auto px-4 py-8">
+        <div class="bg-imuno-dark/80 backdrop-blur-sm rounded-2xl p-6 md:p-10 border border-teal-500/30 text-center shadow-xl">
+            <p class="text-lg md:text-xl leading-relaxed">
+                O jogo é constituído em um baralho de 32 cartas, inspirado no Super Trunfo comercial. As cartas possuem microorganismos com diferentes conceitos.
+            </p>
+        </div>
+    </section>
+
+    <!-- Conceitos do Jogo -->
+    <section class="max-w-6xl mx-auto px-4 py-8">
+        <h2 class="text-3xl font-black text-center mb-8 text-imuno-yellow uppercase tracking-wide">Conceitos do Jogo</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <div class="bg-slate-800 rounded-xl p-6 border-t-4 border-blue-400 card-hover">
+                <h3 class="text-xl font-bold text-blue-400 mb-3 uppercase">Contágio</h3>
+                <p class="text-sm text-gray-300">Esse conceito numérico, evidencia a capacidade que um vírus tem de ser transmitido.</p>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border-t-4 border-green-400 card-hover">
+                <h3 class="text-xl font-bold text-green-400 mb-3 uppercase">Vacina Disponível</h3>
+                <p class="text-sm text-gray-300">Esse conceito é definido por SIM ou NÃO, evidenciando se a doença causada pelo microorganismo possui ou não vacina.</p>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border-t-4 border-red-500 card-hover">
+                <h3 class="text-xl font-bold text-red-500 mb-3 uppercase">Gravidade da Doença</h3>
+                <p class="text-sm text-gray-300">Esse conceito numérico, mostra a gravidade da doença no não-vacinado.</p>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border-t-4 border-purple-400 card-hover">
+                <h3 class="text-xl font-bold text-purple-400 mb-3 uppercase">Capacidade de Mutação</h3>
+                <p class="text-sm text-gray-300">Esse conceito numérico, evidencia a capacidade que um vírus tem de evoluir alterar seu código genético.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Destaques das Cartas -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Carta Vacina -->
+            <div class="flex flex-col md:flex-row gap-6 bg-imuno-dark/60 p-6 rounded-2xl border border-teal-500/50 shadow-2xl">
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <img src="32_3.jpg" alt="Carta Vacina Super Imuno" class="w-full max-w-[250px] rounded-xl object-contain shadow-lg">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col justify-center">
+                    <h3 class="text-2xl font-black text-imuno-yellow mb-4 uppercase">Carta Super Imuno</h3>
+                    <p class="text-gray-300 mb-4">A carta "Super Imuno" ilustrada por uma vacina, ganha de todas as outras cartas de microorganismo que tiverem vacina disponível.</p>
+                    <div class="bg-blue-900/50 p-4 rounded-lg border-l-4 border-blue-400 text-sm font-bold">
+                        <p class="mb-2">Se o microrganismo <span class="text-green-400">POSSUI</span> vacina: A carta vence a rodada</p>
+                        <p>Se o microorganismo <span class="text-red-400">NÃO POSSUI</span> vacina: A carta perde a rodada</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carta Covid-19 -->
+            <div class="flex flex-col md:flex-row gap-6 bg-imuno-dark/60 p-6 rounded-2xl border border-red-500/50 shadow-2xl">
+                <div class="w-full md:w-1/2 flex justify-center order-1 md:order-2">
+                    <img src="1_3.jpg" alt="Carta Covid-19" class="w-full max-w-[250px] rounded-xl object-contain shadow-lg">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col justify-center order-2 md:order-1">
+                    <h3 class="text-2xl font-black text-red-400 mb-4 uppercase">Carta Covid-19</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed overflow-y-auto max-h-[250px] pr-2">
+                        A covid-19 é uma infecção respiratória aguda causada pelo coronavírus SARS-CoV-2, potencialmente grave, de elevada transmissibilidade e de distribuição global. A infecção pelo SARS-CoV-2 pode variar de casos sem sintomas e sintomas com manifestações leves, moderados, graves e críticos. Os sinais e sintomas mais comuns incluem: febre ou calafrios, tosse, fadiga, anorexia, dispneia, mialgia e dor de cabeça. No entanto, outros sintomas não específicos, como dor de garganta, congestão nasal ou coriza, e dor de cabeça, também foram reportados por casos confirmados de covid-19. Responsável pela pandemia de 2020 e justificativa para elaboração do jogo, após o descrédito das vacinas, na vacinação de 2021.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Banco de Doenças (Interativo) -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-black text-center mb-8 text-imuno-yellow uppercase tracking-wide text-shadow">Doenças e Microorganismos</h2>
+        <p class="text-center text-teal-100 mb-10 max-w-2xl mx-auto">Clique em uma das doenças abaixo para conhecer as informações oficiais presentes nas cartas do jogo.</p>
+        
+        <div id="disease-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <!-- Gerado via Javascript -->
+        </div>
+    </section>
+
+    <!-- Modal de Doenças -->
+    <div id="disease-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-slate-800 w-full max-w-2xl p-6 rounded-2xl border border-teal-500 shadow-2xl relative mx-4 modal-enter">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h3 id="modal-title" class="text-2xl md:text-3xl font-black text-imuno-yellow mb-4 uppercase">Título</h3>
+            <div class="w-16 h-1 bg-teal-500 mb-6"></div>
+            <p id="modal-desc" class="text-lg text-gray-200 leading-relaxed max-h-[60vh] overflow-y-auto pr-2">Descrição...</p>
+        </div>
+    </div>
+
+    <!-- Referências do Jogo -->
+    <section class="max-w-4xl mx-auto px-4 py-12">
+        <div class="bg-imuno-dark/80 backdrop-blur-sm rounded-2xl p-6 md:p-10 border border-teal-500/30 shadow-xl">
+            <h2 class="text-2xl font-black mb-6 text-imuno-yellow uppercase tracking-wide border-b border-teal-500/30 pb-2">Referências</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm text-teal-100 font-mono">
+                <!-- Coluna 1 -->
+                <div class="space-y-2">
+                    <p><span class="font-bold text-white">COVID-19 (SARS-CoV-2):</span> <a href="https://encurtador.com.br/hnbz" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/hnbz</a></p>
+                    <p><span class="font-bold text-white">Febre Amarela (Flavivírus):</span> <a href="https://encurtador.com.br/pMJP" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/pMJP</a></p>
+                    <p><span class="font-bold text-white">HPV (Papilomavírus humano):</span> <a href="https://encurtador.com.br/tnmL" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/tnmL</a></p>
+                    <p><span class="font-bold text-white">Tuberculose (M. tuberculosis):</span> <a href="https://encurtador.com.br/PJCm" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/PJCm</a></p>
+                    <p><span class="font-bold text-white">Dengue (DENV 1-4):</span> <a href="https://encurtador.com.br/jRDi" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/jRDi</a></p>
+                    <p><span class="font-bold text-white">Resfriado Comum (Rinovírus):</span> <a href="https://encurtador.com.br/qBMT" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/qBMT</a></p>
+                    <p><span class="font-bold text-white">Infecção Hospitalar (S. aureus):</span> <a href="https://encurtador.com.br/KDdP" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/KDdP</a></p>
+                    <p><span class="font-bold text-white">Pé-de-Atleta (T. rubrum):</span> <a href="https://encurtador.com.br/IMGT" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/IMGT</a></p>
+                    <p><span class="font-bold text-white">Zika (ZIKV):</span> <a href="https://encurtador.com.br/nXhl" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/nXhl</a></p>
+                    <p><span class="font-bold text-white">Hepatite B (HBV):</span> <a href="https://shre.ink/jLWk" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLWk</a></p>
+                    <p><span class="font-bold text-white">Hepatite A (HAV):</span> <a href="https://encurtador.com.br/rSEi" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/rSEi</a></p>
+                    <p><span class="font-bold text-white">Poliomielite (Poliovírus):</span> <a href="https://shre.ink/jLss" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLss</a></p>
+                    <p><span class="font-bold text-white">Gastroenterite (E. coli):</span> <a href="https://shre.ink/jLsl" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLsl</a></p>
+                    <p><span class="font-bold text-white">SHU (E. coli EHEC):</span> <a href="https://shre.ink/jLs1" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLs1</a></p>
+                    <p><span class="font-bold text-white">Toxoplasmose (T. gondii):</span> <a href="https://shre.ink/jLsb" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLsb</a></p>
+                    <p><span class="font-bold text-white">Salmonelose (Salmonella spp.):</span> <a href="https://shre.ink/jLBO" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLBO</a></p>
+                    <p><span class="font-bold text-white">Gripe Sazonal:</span> <a href="https://shre.ink/jLpy" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLpy</a></p>
+                </div>
+                <!-- Coluna 2 -->
+                <div class="space-y-2 mt-4 md:mt-0">
+                    <p><span class="font-bold text-white">Shigelose (Shigella spp.):</span> <a href="https://shre.ink/jLpH" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLpH</a></p>
+                    <p><span class="font-bold text-white">Leptospirose (Leptospira spp.):</span> <a href="https://shre.ink/jLfy" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLfy</a></p>
+                    <p><span class="font-bold text-white">Raiva (RABV):</span> <a href="https://shre.ink/jLfC" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLfC</a></p>
+                    <p><span class="font-bold text-white">Rotavírus:</span> <a href="https://shre.ink/jLfq" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLfq</a></p>
+                    <p><span class="font-bold text-white">Oropouche:</span> <a href="https://shre.ink/jLr6" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLr6</a></p>
+                    <p><span class="font-bold text-white">Mayaro (Vírus Mayaro):</span> <a href="https://shre.ink/jLrO" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLrO</a></p>
+                    <p><span class="font-bold text-white">MERS-CoV:</span> <a href="https://shre.ink/jLrw" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLrw</a></p>
+                    <p><span class="font-bold text-white">Mpox (varíola dos macacos):</span> <a href="https://shre.ink/jLrE" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLrE</a></p>
+                    <p><span class="font-bold text-white">Cólera (V. cholerae):</span> <a href="https://shre.ink/jLrz" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLrz</a></p>
+                    <p><span class="font-bold text-white">Infecção Nipah:</span> <a href="https://shre.ink/jL8z" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jL8z</a></p>
+                    <p><span class="font-bold text-white">Meningite Bacteriana:</span> <a href="https://shre.ink/jL8X" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jL8X</a></p>
+                    <p><span class="font-bold text-white">Vírus do Oeste do Nilo:</span> <a href="https://shre.ink/jL8u" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jL8u</a></p>
+                    <p><span class="font-bold text-white">Tétano (C. tetani):</span> <a href="https://encurtador.com.br/USOD" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/USOD</a></p>
+                    <p><span class="font-bold text-white">HIV/AIDS:</span> <a href="https://encurtador.com.br/mggP" target="_blank" class="hover:text-blue-400 transition-colors">https://encurtador.com.br/mggP</a></p>
+                    <p><span class="font-bold text-white">Taxa de contágio:</span> <a href="https://shre.ink/jLg8" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLg8</a></p>
+                    <p><span class="font-bold text-white">Gravidade da doença:</span> <a href="https://shre.ink/jLga" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLga</a></p>
+                    <p><span class="font-bold text-white">Taxa de mutação:</span> <a href="https://shre.ink/jLbP" target="_blank" class="hover:text-blue-400 transition-colors">https://shre.ink/jLbP</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Referências / Apoio -->
+    <footer class="bg-imuno-dark py-12 border-t border-teal-900 mt-4">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-black text-center mb-10 text-teal-400 uppercase">Apoio e Fomento</h2>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-80">
+                <div class="w-32 md:w-40">
+                    <img src="fapesp logo_2.png" alt="FAPESP" class="w-full h-auto bg-white p-2 rounded">
+                </div>
+                <div class="text-center font-bold text-xl text-gray-300">LEI<br><span class="text-xs font-normal">Laboratório de Estudos em Imunologia</span></div>
+                <div class="w-32">
+                    <img src="Símbolo_ABC_3.jpg" alt="Academia Brasileira de Ciências" class="w-full h-auto bg-white p-2 rounded mix-blend-screen">
+                </div>
+                <div class="w-40 md:w-56">
+                    <img src="impg logo_2.png" alt="Instituto de Microbiologia Paulo de Góes UFRJ" class="w-full h-auto bg-white p-2 rounded">
+                </div>
+                <div class="w-24 md:w-32">
+                    <img src="ufrj logo_2.png" alt="UFRJ" class="w-full h-auto bg-white p-2 rounded">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const diseases = [
+            { name: "Febre Amarela", desc: "A febre amarela é uma doença infecciosa aguda, grave e prevenível por vacina, transmitida por mosquitos infectados em ciclos urbanos (pelo Aedes aegypti) e silvestres. Seus sintomas incluem febre súbita, dores intensas no corpo e na cabeça, calafrios, náuseas e fadiga." },
+            { name: "HPV", desc: "A infecção pelo HPV não apresenta sinais e sintomas na maioria das pessoas. As lesões apresentam-se como verrugas na região genital e no ânus, sendo denominadas tecnicamente de condilomas acuminados e popularmente conhecidas como 'crista de galo', 'figueira' ou 'cavalo de crista'. Podem ser únicas ou múltiplas, de tamanhos variáveis, achatadas ou elevadas e sólidas. As lesões costumam acometer vulva, vagina, colo do útero, região perianal, ânus, pênis, escroto ou região pubiana." },
+            { name: "Tuberculose", desc: "A tuberculose é uma doença infecciosa e transmissível, causada pela bactéria Mycobacterium tuberculosis, também conhecida como bacilo de Koch. A doença afeta principalmente os pulmões (forma pulmonar), mas pode atingir outros órgãos e/ou sistemas (forma extrapulmonar). Tosses, febre, suor noturno e emagrecimento." },
+            { name: "Dengue", desc: "A dengue é uma doença febril aguda, sistêmica, dinâmica, debilitante e autolimitada. Todo indivíduo que apresentar febre (39°C a 40°C) de início repentino e apresentar pelo menos duas das seguintes manifestações - dor de cabeça, prostração, dores musculares e/ou articulares e dor atrás dos olhos - deve procurar imediatamente um serviço de saúde, a fim de obter tratamento oportuno." },
+            { name: "Resfriado Comum", desc: "Os sintomas do resfriado comum causado pelo rinovírus incluem dor de garganta, coriza, tosse, espirros, lacrimejamento, dor de cabeça e dores no corpo. Bebês e crianças podem desenvolver febre e otite média. Bebês podem desenvolver doenças mais graves, como crupe, bronquiolite e pneumonia. Os rinovírus podem desencadear crises de asma. A infecção assintomática por rinovírus é incomum." },
+            { name: "Infecção Hospitalar", desc: "Staphylococcus e Streptococcus espalham-se por contato ou gotículas. Em portadores saudáveis, tornam-se perigosas ao entrar no corpo, sendo comuns cepas resistentes (SARM) em hospitais. Via sangue, afetam pele, pulmões, coração e ossos. Suas toxinas podem causar a síndrome do choque tóxico, provocando falência de órgãos e queda brusca da pressão arterial." },
+            { name: "Pé de Atleta", desc: "A tínea dos pés (pé de atleta) é uma infecção fúngica favorecida pela umidade e suor. Causa descamação, vermelhidão e erosão entre os dedos ou na sola. Casos graves levam a infecções bacterianas, celulite e reações inflamatórias em outros locais, como as mãos. O tratamento foca em manter os pés secos e usar antifúngicos tópicos ou orais para evitar a reincidência." },
+            { name: "Zika", desc: "O Zika (ZIKV) é uma arbovirose transmitida pela picada de mosquitos. Suas manifestações incluem febre baixa, exantema precoce e conjuntivite não purulenta, além de dores de cabeça, artralgia, mialgia, cansaço e inchaço nas juntas." },
+            { name: "Hepatite B", desc: "A Hepatite B (HBV) é transmitida por sangue, sexo desprotegido ou de mãe para filho. Chamada de 'doença silenciosa', pode ser assintomática por décadas e evoluir para cirrose ou câncer de fígado. Embora não tenha cura, o tratamento via SUS reduz riscos de complicações. A prevenção exige preservativos, não compartilhar agulhas e, príncipalmente, a vacina em três doses." },
+            { name: "Hepatite A", desc: "A Hepatite A (HAV) é transmitida pela via fecal-oral, via água ou alimentos contaminados e falta de saneamento básico. Sintomas incluem fadiga, febre, enjoos e icterícia (pele amarelada). Geralmente é benigna, mas sua letalidade aumenta com a idade. Não há tratamento específico; a prevenção foca em higiene e na vacina, altamente eficaz e disponível no SUS para crianças." },
+            { name: "Poliomielite", desc: "A Poliomielite (paralisia infantil) é causada pelo poliovírus, transmitido por fezes ou secreções bucais. A maioria é assintomática, mas pode causar febre, mal-estar, dor de cabeça, vômitos e rigidez na nuca. Nos casos graves, ocorre paralisia súbita, atingindo principalmente membros inferiores, levando a sequelas motoras permanentes nos músculos e nas articulações." },
+            { name: "Gastroenterite", desc: "A Gastroenterite por Escherichia coli ocorre pela ingestão de água ou alimentos contaminados. Diferentes subtipos causam sintomas variados: a E. coli entero-hemorrágica provoca cólicas abdominais intensas e diarreia aquosa que se torna sanguinolenta em 24 horas, durando até 8 dias. Outros tipos, como a enterotoxigênica, causam a 'diarreia do viajante' com febre geralmente ausente ou leve." },
+            { name: "SHU", desc: "A Síndrome Hemolítico-Urêmica (SHU) é causada por bactérias E. coli produtoras de toxina Shiga. É condição grave com anemia hemolítica, redução de plaquetas e lesão renal aguda. Os sintomas surgem após diarreia sanguinolenta e incluem palidez, letargia, diminuição da urina (oligúria) e edemas, podendo levar à insuficiência renal crônica ou óbito em casos severos." },
+            { name: "Toxoplasmose", desc: "A Toxoplasmose é causada pelo protozoário Toxoplasma gondii, transmitido por água ou alimentos contaminados com fezes de felinos. Frequentemente assintomática, pode manifestar febre, fadiga, dores musculares e gânglios inchados. Casos graves afetam a visão ou cérebro em pessoas com baixa imunidade. Na forma congênita, causa sequelas visuais e neurológicas permanentes no bebê." },
+            { name: "Salmonelose", desc: "A Salmonelose é uma infecção causada por bactérias do gênero Salmonella, transmitida pela ingestão de alimentos contaminados, como carnes e ovos crus. Os sintomas surgem entre 6 e 72 horas após o consumo e incluem diarreia, vômitos, dor abdominal, febre moderada e perda de apetite. A doença dura de 2 a 7 dias, mas pode causar desidratação grave e ser fatal se não tratada." },
+            { name: "Gripe Sazonal", desc: "A Gripe Sazonal é uma infecção respiratória causada pelos vírus Influenza. Transmite-se pelo ar ou contato com superfícies contaminadas. Os sintomas incluem febre alta, calafrios, dores musculares, dor de garganta, tosse e fadiga extrema. Pode evoluir para pneumonia em grupos de risco." },
+            { name: "Shigelose", desc: "A Shigelose é uma infecção intestinal causada pela bactéria Shigella. Transmite-se pela via fecal-oral, exigindo baixas doses para infectar. Os sintomas incluem diarreia com sangue e muco, dores abdominais intensas, vômitos, febre e tenesmo (vontade constante de evacuar)." },
+            { name: "Leptospirose", desc: "A Leptospirose é causada pela bactéria Leptospira, transmitida pela urina de animais (principalmente ratos). Os sintomas iniciais incluem febre, dor de cabeça e forte dor muscular, especialmente nas panturrilhas. Na fase tardia, pode evoluir para a Síndrome de Weil, caracterizada pela tríade de icterícia intensa, insuficiência renal e hemorragias (principalmente pulmonares), com alto risco de letalidade." },
+            { name: "Raiva", desc: "A Raiva é uma infecção viral grave causada pelo Lyssavirus, transmitida pela saliva de mamíferos infectados. Afeta o sistema nervoso, causando inflamação cerebral fatal. Sintomas iniciais são inespecíficos (febre, mal-estar); progridem para ansiedade, delírios e espasmos musculares ao tentar beber água (hidrofobia) ou com vento (aerofobia), além de salivação intensa, paralisia e coma antes do óbito." },
+            { name: "Rotavírus", desc: "O Rotavírus é um vírus que causa diarreia grave, principalmente em crianças menores de cinco anos. A transmissão ocorre pela via fecal-oral. Os sintomas clássicos iniciam-se com vômitos repentinos, seguidos de diarreia aquosa, gordurosa e explosiva, além de febre alta. A maior complicação é a desidratação severa, que pode ser fatal se não houver reposição imediata de líquidos e minerais." },
+            { name: "Oropouche", desc: "O Oropouche é causado pelo vírus OROV, transmitido principalmente pelo mosquito maruim (Culicoides paraensis). Seus sintomas assemelham-se aos da dengue: febre súbita, dor de cabeça intensa, dores musculares e articulares generalizadas. Outras manifestações ações incluem tontura, náuseas e diarreia. Até 60% dos casos apresentam recidiva dos sintomas após melhora inicial, exigindo monitoramento clínico." },
+            { name: "Mayaro", desc: "A Febre do Mayaro é causada pelo vírus Mayaro (MAYV), transmitido por mosquitos silvestres como o Haemagogus. O quadro clínico é similar à chikungunya, com início súbito de febre alta, cefaleia, calafrios e erupções cutâneas. O sintoma mais marcante é a dor intensa e persistente nas articulações (artralgia), podendo causar edemas em pulsos e tornozelos. Não há vacina ou terapia específica disponível." },
+            { name: "MERS-CoV", desc: "A MERS é uma doença respiratória causada pelo betacoronavirus MERS-COV, transmitido por dromedários ou entre humanos em hospitais. Os sintomas incluem febre, tosse e falta de ar grave, evoluindo frequentemente para pneumonia severa. Manifestações gastrointestinais, como diarreia, também ocorrem. É uma patologia de alta letalidade (35-37%), sendo prioridade para pesquisa por falta de vacina." },
+            { name: "Mpox", desc: "A Mpox é uma zoonose causada pelo vírus mpox, do gênero Orthopoxvirus. A transmissão ocorre pelo contato direto com fluidos, lesões ou crostas infecciosas de humanos e animais, além de objetos contaminados. Caracteriza-se por febre e dores, seguidas por erupções cutâneas que surgem no rosto, palmas e solas. Os sintomas geralmente resolvem de forma espontânea, exigindo cuidados locais com as feridas." },
+            { name: "Cólera", desc: "A Cólera é uma infecção intestinal aguda causada pela bactéria Vibrio cholerae. Disseminada via fecal-oral por água ou comida contaminada, provoca diarreia aquosa profusa e súbita, conhecida como 'água de arroz'. Pode causar vômitos e desidratação severa rápida, levando ao óbito se não houver reidratação imediata. É tratável com soro e, em casos graves, com o auxílio de antibióticos." },
+            { name: "Infecção Nipah", desc: "A Infecção por vírus Nipah é uma zoonose causada pelo vírus NiV, transmitida por morcegos frugívoros, porcos ou contato humano. Os sintomas incluem febre, dor de cabeça, confusão mental e problemas respiratórios graves, como tosse e falta de ar. Pode evoluir para encefalite fatal (inflamação no cérebro). A letalidade é alta (40-75%) e não há vacina ou tratamento específico disponível." },
+            { name: "Meningite Bacteriana", desc: "A Meningite Bacteriana é a inflamação das membranas do cérebro causada por bactérias como o meningococo e o pneumococo. Transmite-se por gotículas respiratórias. Sintomas: febre alta, dor de cabeça forte, rigidez na nuca, vômitos e sensibilidade à luz. É uma emergência com alta letalidade (20-30%) e risco de sequelas permanentes, como surdez, amputações e danos neurológicos graves." },
+            { name: "Oeste do Nilo", desc: "A Febre do Nilo Ocidental é causada pelo vírus WNV, transmitido pela picada de mosquitos infectados (Culex). A maioria dos casos é assintomática. A forma leve causa febre súbita, mal-estar, dor de cabeça, dor muscular e exantema. Casos graves (1 em 150) atingem o sistema nervoso, provocando encefalite, meningite ou paralisia flácida aguda, com risco de morte e necessidade de suporte em UTI." },
+            { name: "AIDS", desc: "A Aids é o estágio avançado da infecção pelo HIV, ocorrendo quando o sistema imunológico está gravemente comprometido pela destruição dos linfócitos TCD4+. A transmissão do vírus acontece por sexo desprotegido, compartilhamento de seringas ou da mãe para o filho (parto/amamentação). Sintomas iniciais lembram gripe, evoluindo para febre persistente, perda de peso e doenças oportunistas graves." },
+            { name: "Tétano", desc: "O Tétano acidental é uma doença grave, não contagiosa, causada por uma bactéria (Clostridium tetani) que é encontrada na natureza. A bactéria causadora do tétano acidental pode estar presente na pele, fezes, terra, galhos, plantas baixas, água suja e poeira. Contraturas musculares; febre baixa, rigidez de membros (braços e pernas); rigidez abdominal; dificuldade de abrir a boca; dores nas costas e nos membros." }
+        ];
+
+        const grid = document.getElementById('disease-grid');
+        const modal = document.getElementById('disease-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+
+        // Gerar Cards de Doenças
+        diseases.forEach((disease, index) => {
+            const button = document.createElement('button');
+            button.className = "bg-imuno-dark hover:bg-teal-700 text-teal-100 hover:text-white font-bold py-4 px-2 rounded-xl border border-teal-600 hover:border-imuno-yellow transition-all duration-300 transform hover:-translate-y-1 shadow-lg flex items-center justify-center text-sm md:text-base text-center uppercase";
+            button.innerText = disease.name;
+            button.onclick = () => openModal(index);
+            grid.appendChild(button);
+        });
+
+        function openModal(index) {
+            modalTitle.innerText = diseases[index].name;
+            modalDesc.innerText = diseases[index].desc;
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        // Fechar modal clicando fora
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
